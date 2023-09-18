@@ -12,7 +12,7 @@ const notesStore = useNotesStore();
   <main>
     <div class="container">
       <header>
-        <h1 style="font-weight:900;">N o t e s .</h1>
+        <h1 style="font-weight:900;">Notes</h1>
         <button>+</button>
       </header>
       <notes-form>

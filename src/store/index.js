@@ -1,44 +1,38 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-export const useNotesStore = defineStore('notesStore', () => {
-  const notes = ref([
-    { id: 1, title: 'First note', content: 'This is the first note', date: '2021-01-01' }
-  ]);
-  const sortOptions = ref([
-    { value: 'title', text: 'Title' },
-    { value: 'content', text: 'Content' },
-    { value: 'date', text: 'Date' }
-  ]);
-  const searchQuery = ref('');
-  const selectedSort = ref('')
+export const useNotesStore = defineStore('notesStore', {
+  state: () => {
+    notes = [
+      { id: 1, title: 'First note', content: 'This is the first note', date: '2021-01-01' }
+    ],
+    sortOptions = [
+      { value: 'title', text: 'Title' },
+      { value: 'content', text: 'Content' },
+      { value: 'date', text: 'Date' }
+    ],
+    searchQuery = '',
+    selectedSort = ''
+  },
+  
+  getters: {
+    sortNotes() {
+      return [...this.notes].sort((n1, n2) => n1[this.selectedSort]?.localeCompare(n2[this.selectedSort]))
+    },
+    searchNotes() {
+      return getters.sortNotes.filter(n => n.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || n.content.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    }
+  },
 
-  const addNote = (note) => {
-    notes.value.push(note)
+  actions: {
+   addNote(note){
+    this.notes.push(note)
+  },
+   deleteNote(note){
+    this.notes = this.notes.filter(n => n.id !== note.id)
+  },
+   editNote(note){
+    this.notes = this.notes.map(n => n.id === note.id ? note : n)
   }
-  const deleteNote = (note) => {
-    notes.value = notes.value.filter(n => n.id !== note.id)
-  }
-  const editNote = (note) => {
-    notes.value = notes.value.map(n => n.id === note.id ? note : n)
-  }
-
-  const sortNotes = computed(() => {
-    return [...notes.value].sort((n1, n2) => n1[selectedSort.value]?.localeCompare(n2[selectedSort.value]))
-  });
-  const searchNotes = computed(() => {
-    return sortNotes.value.filter(n => n.title.toLowerCase().includes(searchQuery.value.toLowerCase()) || n.content.toLowerCase().includes(searchQuery.value.toLowerCase()))
-  });
-
-  return {
-    notes,
-    sortOptions,
-    searchQuery,
-    addNote,
-    deleteNote,
-    editNote,
-    sortNotes,
-    searchNotes,
-    selectedSort
-  }
+}
 })
