@@ -2,18 +2,18 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 export const useNotesStore = defineStore('notesStore', {
-  state: () => {
-    notes = [
+  state: () => ({
+    notes: [
       { id: 1, title: 'First note', content: 'This is the first note', date: '2021-01-01' }
     ],
-    sortOptions = [
+    sortOptions: [
       { value: 'title', text: 'Title' },
       { value: 'content', text: 'Content' },
       { value: 'date', text: 'Date' }
     ],
-    searchQuery = '',
-    selectedSort = ''
-  },
+    searchQuery: '',
+    selectedSort: ''
+  }),
   
   getters: {
     sortNotes() {
