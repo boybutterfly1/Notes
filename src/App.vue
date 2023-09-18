@@ -19,7 +19,7 @@ const notesStore = useNotesStore();
 
       </notes-form>
       <notes-list
-      :notes="notesStore.notes.value"
+      :notes="notesStore.notes"
       />
     </div>
   </main>

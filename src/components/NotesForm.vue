@@ -3,14 +3,14 @@ import ItemButton from '@/components/UI/ItemButton.vue'
 import { useNotesStore } from '@/store/index'
 import { ref } from 'vue'
 
-const noteStore = useNotesStore();
+const notesStore = useNotesStore();
 const note = ref({
     title: '',
     content: '',
 });
 
 const addNote = () => {
-    noteStore.addNote(
+    notesStore.addNote(
         {
             id: Date.now(),
             title: note.value.title,
@@ -27,12 +27,12 @@ const addNote = () => {
     <div class="form">
         <input
             type="text"
-            v-model="note.value.title"
+            v-model="note.title"
             placeholder="Title"
         >
         <input
             type="text"
-            v-model="note.value.content"
+            v-model="note.content"
             placeholder="Content"
         >
         <item-button
