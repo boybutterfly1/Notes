@@ -12,7 +12,7 @@ export const useNotesStore = defineStore('notesStore', {
       { value: 'date', text: 'Date' }
     ],
     searchQuery: '',
-    selectedSort: ''
+    selectedSort: '',
   }),
   
   getters: {

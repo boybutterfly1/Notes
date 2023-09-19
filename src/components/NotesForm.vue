@@ -1,5 +1,5 @@
 <script setup>
-import ItemButton from '@/components/UI/ItemButton.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import { useNotesStore } from '@/store/index'
 import { ref } from 'vue'
 
@@ -35,11 +35,11 @@ const addNote = () => {
             v-model="note.content"
             placeholder="Content"
         >
-        <item-button
+        <my-button
             @click="addNote"
         >
             Add Note
-        </item-button>
+        </my-button>
     </div>
 
 </template>

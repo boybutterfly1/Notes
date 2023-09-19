@@ -1,5 +1,5 @@
 <script setup>
-import NotesForm from '@/components/NotesForm.vue'
+import NotesHeader from '@/components/NotesHeader.vue'
 import NotesList from '@/components/NotesList.vue'
 import { useNotesStore } from '@/store/index'
 import { ref } from 'vue';
@@ -10,24 +10,18 @@ const notesStore = useNotesStore();
 
 <template>
   <main>
-    <div class="container">
-      <header>
-        <h1 style="font-weight:900;">Notes</h1>
-        <button>+</button>
-      </header>
-      <notes-form>
-
-      </notes-form>
+      <notes-header />
+      <select disabled value="">Sort by
+        <option v-for="option in sortOptions"></option>
+      </select>
       <notes-list
       :notes="notesStore.notes"
       />
-    </div>
   </main>
 </template>
 
 <style scoped>
 * {
-  
   font-family: Avenir;
 }
 main {
@@ -37,15 +31,9 @@ main {
   padding: 20px;
   box-sizing: border-box;
   background-color: #f5f5f5;
-  text-align: center;
   color: #361f36;
 }
-header {
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 header button {
   width: 50px;
   height: 50px;
@@ -62,11 +50,6 @@ header button:hover {
   background-color: #662d66;
 }
 .container {
-  margin: 0 auto;
   padding: 20px;
-}
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
 }
 </style>

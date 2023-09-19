@@ -14,7 +14,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="cards-container">
         <notes-item
             v-for="note in notes"
             :key="note.id"
@@ -24,5 +24,8 @@
 </template>
 
 <style scoped>
-
+   .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    }
 </style>
