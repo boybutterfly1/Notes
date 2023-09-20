@@ -15,11 +15,12 @@
 
 <template>
     <div class="cards-container">
-        <notes-item
+        <notes-item v-if="notes.length > 0"
             v-for="note in notes"
             :key="note.id"
             :note="note"
         />
+        <div v-else>No notes found...</div>
     </div>
 </template>
 

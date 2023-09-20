@@ -165,4 +165,3 @@ font-size: 12px;
     flex-direction: column;
   }
 </style>
-
