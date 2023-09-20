@@ -6,7 +6,7 @@ import { ref } from 'vue'
 const notesStore = useNotesStore();
 const note = ref({
     title: '',
-    content: '',
+    body: '',
 });
 
 const addNote = () => {
@@ -14,12 +14,12 @@ const addNote = () => {
         {
             id: Date.now(),
             title: note.value.title,
-            content: note.value.content,
+            body: note.value.body,
             date: new Date().toLocaleString(),
         }
     );
     note.value.title = '';
-    note.value.content = '';
+    note.value.body = '';
 }
 </script>
 
@@ -32,7 +32,7 @@ const addNote = () => {
         >
         <input
             type="text"
-            v-model="note.content"
+            v-model="note.body"
             placeholder="Content"
         >
         <my-button

@@ -26,7 +26,7 @@
 <template>
   <div class="card">
       <span class="title">{{ note.title }}</span>
-      <span class="content">{{ note.content }}</span>
+      <span class="content">{{ note.body }}</span>
       <span class="date">{{ note.date }}</span>
       <my-button class="more-button"
         @click="more = true"
@@ -46,28 +46,32 @@
 
 <style scoped>
 .card {
-width: 200px;
-height: 200px;
+width: 250px;
+height: 250px;
 margin: 20px;
 padding: 20px;
 box-sizing: border-box;
 background-color: #eaddea;
 color: #361f36;
 border-radius: 10px;
-position: relative; 
+position: relative;
 display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+
 }
 .card .title {
 position: absolute;
 top: 10px;
 left: 10px;
-font-size: 18px;
+font-size: 16px;
 font-weight: bold;
 }
 
 .card .content {
-margin-top: 20px;
-font-size: 16px;
+font-size: 14px;
+margin-top: auto;
 }
 
 .card .date {

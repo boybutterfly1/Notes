@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import axios from 'axios'
 
 export const useNotesStore = defineStore('notesStore', {
   state: () => ({
     notes: [
-      { id: 1, title: 'First note', content: 'This is the first note', date: '2021-01-01' }
+      { id: 1, title: 'First note', body: 'This is the first note', date: '2021-01-01' }
     ],
     sortOptions: [
       { value: 'title', text: 'Title' },
-      { value: 'content', text: 'Content' },
+      { value: 'body', text: 'Content' },
       { value: 'date', text: 'Date' }
     ],
     searchQuery: '',
@@ -20,7 +20,7 @@ export const useNotesStore = defineStore('notesStore', {
       return [...this.notes].sort((n1, n2) => n1[this.selectedSort]?.localeCompare(n2[this.selectedSort]))
     },
     searchNotes() {
-      return getters.sortNotes.filter(n => n.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || n.content.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      return this.sortNotes.filter(n => n.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || n.body.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
 
@@ -33,6 +33,15 @@ export const useNotesStore = defineStore('notesStore', {
   },
    editNote(note){
     this.notes = this.notes.map(n => n.id === note.id ? note : n)
-  }
+  },
+  async fetchNotes() {
+    try {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      response.data.forEach(n => n.date = new Date().toLocaleString())
+      this.notes = response.data
+    } catch (error) {
+      alert(error)
+    }
+  },
 }
 })

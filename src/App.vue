@@ -2,20 +2,32 @@
 import NotesHeader from '@/components/NotesHeader.vue'
 import NotesList from '@/components/NotesList.vue'
 import { useNotesStore } from '@/store/index'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const notesStore = useNotesStore();
 
+onMounted(() => {
+  notesStore.fetchNotes();
+});
 </script>
 
 <template>
   <main>
       <notes-header />
-      <select disabled value="">Sort by
-        <option v-for="option in sortOptions"></option>
+      <select
+        v-model="notesStore.selectedSort"
+      >
+        <option disabled value="">Sort by</option>
+        <option
+          v-for="option in notesStore.sortOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+        {{ option.text }}
+        </option>
       </select>
       <notes-list
-      :notes="notesStore.notes"
+      :notes="notesStore.sortNotes"
       />
   </main>
 </template>
