@@ -14,6 +14,11 @@ onMounted(() => {
 <template>
   <main>
       <notes-header />
+      <input
+        v-model="notesStore.searchQuery"
+        placeholder="Search notes..."
+
+      />
       <select
         v-model="notesStore.selectedSort"
       >
@@ -27,7 +32,7 @@ onMounted(() => {
         </option>
       </select>
       <notes-list
-      :notes="notesStore.sortNotes"
+      :notes="notesStore.searchNotes"
       />
   </main>
 </template>

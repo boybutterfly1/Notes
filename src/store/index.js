@@ -3,9 +3,7 @@ import axios from 'axios'
 
 export const useNotesStore = defineStore('notesStore', {
   state: () => ({
-    notes: [
-      { id: 1, title: 'First note', body: 'This is the first note', date: '2021-01-01' }
-    ],
+    notes: [],
     sortOptions: [
       { value: 'title', text: 'Title' },
       { value: 'body', text: 'Content' },

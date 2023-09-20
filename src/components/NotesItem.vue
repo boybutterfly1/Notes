@@ -4,6 +4,7 @@
   import { useNotesStore } from '@/store/index'
   import { ref } from 'vue';
   
+  const modal = ref(false);
   const notesStore = useNotesStore();
   const props = defineProps({
     note: {
@@ -20,6 +21,7 @@
 
   const editNote = () => {
     notesStore.editNote(props.note);
+    modal.value = false;
   };
 </script>
 
@@ -35,12 +37,39 @@
       </my-button>
       <div v-if="more" class="more-tab" @click="more = false">
         <div class="more-content" @click.stop>
-          <button>Edit</button>
+          <button
+          @click="modal = true"
+          >
+            Edit
+          </button>
           <button
             @click="deleteNote"  
-          >Delete</button>
+          >
+            Delete
+          </button>
+      <div class="modal" v-if="modal" @click="modal = false">
+        <div class="modal-content" @click.stop>
+          <div class="form">
+            <input
+              type="text"
+              v-model="note.title"
+              placeholder="Title"
+            >
+            <input
+              type="text"
+              v-model="note.body"
+              placeholder="Content"
+            >
+            <my-button
+              @click="editNote"
+            >
+              Submit
+            </my-button>
+          </div>
         </div>
       </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -112,5 +141,28 @@ font-size: 12px;
   flex-direction: column;
   position: relative;
 }
+.modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+.modal-content {
+    width: 750px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
 
