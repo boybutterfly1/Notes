@@ -26,7 +26,11 @@
 </script>
 
 <template>
-  <div class="card">
+  <div
+    class="card"
+    @click="$router.push(`/note/${note.id}`)"
+  >
+      
       <span class="title">{{ note.title }}</span>
       <span class="content">{{ note.body }}</span>
       <span class="date">{{ note.date }}</span>

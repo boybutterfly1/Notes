@@ -20,7 +20,7 @@
             :key="note.id"
             :note="note"
         />
-        <div v-else>No notes found...</div>
+        <div v-else>Notes not found...</div>
     </div>
 </template>
 
