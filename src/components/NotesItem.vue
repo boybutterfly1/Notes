@@ -11,7 +11,6 @@
       type: Object,
       required: true
     },
-  
   });
   const more = ref(false);
 
@@ -19,15 +18,23 @@
     notesStore.deleteNote(props.note);
   };
 
+  const new_note = ref({
+    title: '',
+    body: ''
+  })
   const editNote = () => {
-    notesStore.editNote(props.note);
-    modal.value = false;
+    props.note.title = new_note.value.title;
+    props.note.body = new_note.value.body;
+    new_note.value.title = '';
+    new_note.value.body = '';
+    more.value = false;
   };
 </script>
 
 <template>
   <div class="card">   
       <span class="title"
+        style="cursor: pointer"
         @click="$router.push(`/note/${note.id}`)"
       >{{ note.title }}</span>
       <span class="content">{{ note.body }}</span>
@@ -42,6 +49,7 @@
         <div class="more-content" @click.stop>
           <button
           @click="modal = true"
+
           >
             Edit
           </button>
@@ -55,12 +63,12 @@
           <div class="form">
             <input
               type="text"
-              v-model="note.title"
+              v-model="new_note.title"
               placeholder="Title"
             >
             <input
               type="text"
-              v-model="note.body"
+              v-model="new_note.body"
               placeholder="Content"
             >
             <my-button

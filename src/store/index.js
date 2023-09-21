@@ -29,9 +29,6 @@ export const useNotesStore = defineStore('notesStore', {
    deleteNote(note){
     this.notes = this.notes.filter(n => n.id !== note.id)
   },
-   editNote(note){
-    this.notes = this.notes.map(n => n.id === note.id ? note : n)
-  },
   async fetchNotes() {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
