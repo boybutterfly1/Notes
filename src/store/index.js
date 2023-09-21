@@ -29,9 +29,17 @@ export const useNotesStore = defineStore('notesStore', {
    deleteNote(note){
     this.notes = this.notes.filter(n => n.id !== note.id)
   },
+   editNote(note, new_note_title, new_note_body){
+    this.notes.forEach(n => {
+      if (n.id === note.id) {
+        n.title = new_note_title;
+        n.body = new_note_body;
+      }
+    })
+  },
   async fetchNotes() {
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
       response.data.forEach(n => n.date = new Date().toLocaleString())
       this.notes = response.data
     } catch (error) {

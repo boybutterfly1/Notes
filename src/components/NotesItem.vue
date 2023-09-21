@@ -23,11 +23,8 @@
     body: ''
   })
   const editNote = () => {
-    props.note.title = new_note.value.title;
-    props.note.body = new_note.value.body;
-    new_note.value.title = '';
-    new_note.value.body = '';
-    more.value = false;
+    notesStore.editNote(props.note, new_note.value.title, new_note.value.body);
+    modal.value = false;
   };
 </script>
 
@@ -49,7 +46,6 @@
         <div class="more-content" @click.stop>
           <button
           @click="modal = true"
-
           >
             Edit
           </button>
