@@ -1,9 +1,10 @@
 <template>
+  <NotesHeader></NotesHeader>
   <router-view></router-view>
 </template>
 
-<script>
-
+<script setup>
+import NotesHeader from '@/components/NotesHeader.vue';
 </script>
   
 <style>

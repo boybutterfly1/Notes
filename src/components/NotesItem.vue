@@ -26,15 +26,14 @@
 </script>
 
 <template>
-  <div
-    class="card"
-    @click="$router.push(`/note/${note.id}`)"
-  >
-      
-      <span class="title">{{ note.title }}</span>
+  <div class="card">   
+      <span class="title"
+        @click="$router.push(`/note/${note.id}`)"
+      >{{ note.title }}</span>
       <span class="content">{{ note.body }}</span>
       <span class="date">{{ note.date }}</span>
-      <my-button class="more-button"
+      <my-button
+        class="more-button"
         @click="more = true"
       >
         <span class="more-span">...</span>
@@ -146,7 +145,7 @@ font-size: 12px;
   position: relative;
 }
 .modal {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.55);
@@ -156,7 +155,7 @@ font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    z-index: 9;
   }
 
 .modal-content {
@@ -168,4 +167,18 @@ font-size: 12px;
     display: flex;
     flex-direction: column;
   }
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: Avenir;
+}
 </style>

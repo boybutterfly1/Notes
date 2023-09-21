@@ -13,7 +13,6 @@ onMounted(() => {
 
 <template>
   <main>
-      <notes-header />
       <input
         v-model="notesStore.searchQuery"
         placeholder="Search notes..."
@@ -42,9 +41,8 @@ onMounted(() => {
   font-family: Avenir;
 }
 main {
-  height: 100vh;
+  height: auto;
   width: 100vw;
-  margin: auto;
   padding: 20px;
   box-sizing: border-box;
   background-color: #f5f5f5;

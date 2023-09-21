@@ -7,8 +7,14 @@ const modal = ref(false)
 </script>
 
 <template>
-  <header>
-    <h1 style="font-weight:900;">N o t e s</h1>
+  <header class="navbar">
+    <div 
+      style="font-size:x-large; font-weight:900 ; cursor: pointer;"
+      @click="$router.push('/')"
+    >
+    N o t e s
+    </div>
+    <button>About</button>
     <my-button
       style="height: 50px; width: 50px; border-radius: 100%;"
       @click="modal = true"
@@ -22,6 +28,9 @@ const modal = ref(false)
 </template>
 
 <style scoped>
+*{
+  font-family: Avenir;
+}
 header {
   margin: 20px;
   display: flex;
@@ -39,7 +48,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 1000;
   }
 
 .modal-content {
@@ -51,5 +60,15 @@ header {
     display: flex;
     flex-direction: column;
   }
+  .navbar {
+    background-color: #361f36;
+    color: #ffffff;
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
 
 </style>
